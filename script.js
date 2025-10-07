@@ -11,6 +11,7 @@ class SnakeGame {
         
         this.startBtn = document.getElementById('startBtn');
         this.restartBtn = document.getElementById('restartBtn');
+        this.mobileControlsContainer = document.getElementById('mobileControlsContainer');
         
         // Configurações do jogo
         this.gridSize = 20;
@@ -45,6 +46,7 @@ class SnakeGame {
         this.setupEventListeners();
         this.showStartScreen();
         this.updateHighScore();
+        this.hideMobileControls();
     }
     
     updateHighScore() {
@@ -109,6 +111,23 @@ class SnakeGame {
                 this.handleInput(e);
             }
         });
+        
+        // Controles Mobile
+        this.mobileControlsContainer.addEventListener('click', (e) => {
+            if (this.gameState === 'playing') {
+                const button = e.target.closest('.control-btn');
+                if (button) {
+                    const direction = button.dataset.direction;
+                    const action = button.dataset.action;
+                    
+                    if (direction) {
+                        this.handleMobileInput(direction);
+                    } else if (action === 'pause') {
+                        this.togglePause();
+                    }
+                }
+            }
+        });
     }
     
     showStartScreen() {
@@ -128,6 +147,7 @@ class SnakeGame {
         this.updateScore();
         this.startScreen.classList.add('hidden');
         this.gameOverOverlay.classList.remove('show');
+        this.showMobileControls();
         
         // Não iniciar o loop automaticamente - aguardar primeira tecla
         this.draw();
@@ -135,6 +155,17 @@ class SnakeGame {
     
     restartGame() {
         this.startGame();
+    }
+    
+    showMobileControls() {
+        // Só mostrar no mobile
+        if (window.innerWidth <= 767) {
+            this.mobileControlsContainer.classList.add('show');
+        }
+    }
+    
+    hideMobileControls() {
+        this.mobileControlsContainer.classList.remove('show');
     }
     
     handleInput(e) {
@@ -171,6 +202,40 @@ class SnakeGame {
             case ' ':
                 e.preventDefault();
                 this.togglePause();
+                break;
+        }
+    }
+    
+    handleMobileInput(direction) {
+        // Se ainda não começou a se mover, iniciar o jogo
+        if (this.dx === 0 && this.dy === 0) {
+            this.gameLoop();
+        }
+        
+        switch(direction) {
+            case 'up':
+                if (this.dy !== 1) {
+                    this.dx = 0;
+                    this.dy = -1;
+                }
+                break;
+            case 'down':
+                if (this.dy !== -1) {
+                    this.dx = 0;
+                    this.dy = 1;
+                }
+                break;
+            case 'left':
+                if (this.dx !== 1) {
+                    this.dx = -1;
+                    this.dy = 0;
+                }
+                break;
+            case 'right':
+                if (this.dx !== -1) {
+                    this.dx = 1;
+                    this.dy = 0;
+                }
                 break;
         }
     }
@@ -321,6 +386,7 @@ class SnakeGame {
         this.gameState = 'gameOver';
         this.playGameOverSound();
         this.checkRecords();
+        this.hideMobileControls();
         
         this.finalScoreElement.textContent = this.score;
         this.gameOverOverlay.classList.add('show');

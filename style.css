@@ -136,6 +136,72 @@ body {
     box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
+/* Container de Controles Mobile */
+.mobile-controls-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: none; /* Oculto por padrão */
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    padding: 20px 0;
+}
+
+.mobile-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.control-pad {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.control-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.control-btn {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(52, 73, 94, 0.8);
+    color: #ECF0F1;
+    font-size: 1.5em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(236, 240, 241, 0.2);
+}
+
+.control-btn:active {
+    transform: scale(0.95);
+    background: rgba(231, 76, 60, 0.8);
+}
+
+.control-btn:hover {
+    background: rgba(52, 73, 94, 1);
+    transform: scale(1.05);
+}
+
+.pause-btn {
+    background: rgba(243, 156, 18, 0.8);
+}
+
+.pause-btn:active {
+    background: rgba(243, 156, 18, 1);
+}
+
 /* Overlay de Game Over */
 .game-over-overlay {
     position: absolute;
@@ -205,5 +271,19 @@ body {
     #gameCanvas {
         width: 300px;
         height: 300px;
+    }
+}
+
+/* Mostrar controles mobile apenas no mobile */
+@media (max-width: 767px) {
+    .mobile-controls-container.show {
+        display: block;
+    }
+}
+
+/* Esconder controles mobile no desktop */
+@media (min-width: 768px) {
+    .mobile-controls-container {
+        display: none !important;
     }
 }
