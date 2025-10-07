@@ -3,43 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🐸 Pula-Pula - Jogo de Reflexo</title>
+    <title>🐍 Snake Game - Clássico Viciante</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="game-container">
         <div class="game-header">
-            <h1>🐸 Pula-Pula</h1>
-            <div class="score">Pontuação: <span id="score">0</span></div>
+            <h1>🐍 Snake Game</h1>
+            <div class="score-info">
+                <div class="score">Pontuação: <span id="score">0</span></div>
+                <div class="high-score">Recorde: <span id="highScore">0</span></div>
+            </div>
         </div>
         
         <div class="game-area" id="gameArea">
             <div class="start-screen" id="startScreen">
                 <div class="start-content">
-                    <h2>🐸 Pula-Pula</h2>
-                    <p>Pressione ESPAÇO ou TOQUE para pular!</p>
-                    <p>Evite os obstáculos e marque pontos!</p>
+                    <h2>🐍 Snake Game</h2>
+                    <p>Use as setas para controlar a cobra!</p>
+                    <p>Colete a comida para crescer e marcar pontos!</p>
+                    <p>Não bata nas paredes ou em si mesma!</p>
                     <button class="start-btn" id="startBtn">Começar Jogo</button>
                 </div>
             </div>
             
             <div class="game-screen" id="gameScreen">
-                <div class="frog" id="frog">🐸</div>
-                <div class="obstacles" id="obstacles"></div>
-                <div class="ground"></div>
-            </div>
-            
-            <div class="game-over-screen" id="gameOverScreen">
-                <div class="game-over-content">
-                    <h2>Game Over!</h2>
-                    <p>Pontuação Final: <span id="finalScore">0</span></p>
-                    <button class="restart-btn" id="restartBtn">Jogar Novamente</button>
+                <canvas id="gameCanvas" width="400" height="400"></canvas>
+                <div class="game-over-overlay" id="gameOverOverlay">
+                    <div class="game-over-content">
+                        <h2>Game Over!</h2>
+                        <p>Pontuação Final: <span id="finalScore">0</span></p>
+                        <button class="restart-btn" id="restartBtn">Jogar Novamente</button>
+                    </div>
                 </div>
             </div>
         </div>
         
         <div class="controls-info">
-            <p>🎮 Controles: ESPAÇO ou TOQUE para pular</p>
+            <p>🎮 Controles: SETAS para mover | ESPAÇO para pausar</p>
         </div>
     </div>
     
