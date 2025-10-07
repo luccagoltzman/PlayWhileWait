@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐸 Pula-Pula - Jogo de Reflexo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h1>🐸 Pula-Pula</h1>
+            <div class="score">Pontuação: <span id="score">0</span></div>
+        </div>
+        
+        <div class="game-area" id="gameArea">
+            <div class="start-screen" id="startScreen">
+                <div class="start-content">
+                    <h2>🐸 Pula-Pula</h2>
+                    <p>Pressione ESPAÇO ou TOQUE para pular!</p>
+                    <p>Evite os obstáculos e marque pontos!</p>
+                    <button class="start-btn" id="startBtn">Começar Jogo</button>
+                </div>
+            </div>
+            
+            <div class="game-screen" id="gameScreen">
+                <div class="frog" id="frog">🐸</div>
+                <div class="obstacles" id="obstacles"></div>
+                <div class="ground"></div>
+            </div>
+            
+            <div class="game-over-screen" id="gameOverScreen">
+                <div class="game-over-content">
+                    <h2>Game Over!</h2>
+                    <p>Pontuação Final: <span id="finalScore">0</span></p>
+                    <button class="restart-btn" id="restartBtn">Jogar Novamente</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="controls-info">
+            <p>🎮 Controles: ESPAÇO ou TOQUE para pular</p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

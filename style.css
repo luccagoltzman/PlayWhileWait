@@ -1,0 +1,300 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #87CEEB 0%, #98FB98 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.game-container {
+    width: 100%;
+    max-width: 400px;
+    height: 600px;
+    background: linear-gradient(to bottom, #87CEEB 0%, #98FB98 70%, #8FBC8F 100%);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.game-header h1 {
+    color: #2F4F4F;
+    font-size: 1.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.score {
+    color: #2F4F4F;
+    font-weight: bold;
+    font-size: 1.1em;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.game-area {
+    position: relative;
+    height: calc(100% - 80px);
+    overflow: hidden;
+}
+
+/* Telas do jogo */
+.start-screen, .game-over-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 10;
+}
+
+.start-content, .game-over-content {
+    text-align: center;
+    color: white;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.start-content h2, .game-over-content h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.start-content p, .game-over-content p {
+    margin: 10px 0;
+    font-size: 1.1em;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.start-btn, .restart-btn {
+    background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.start-btn:hover, .restart-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.4);
+}
+
+.start-btn:active, .restart-btn:active {
+    transform: translateY(0);
+}
+
+/* Tela do jogo */
+.game-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Sapinho */
+.frog {
+    position: absolute;
+    left: 80px;
+    top: 50%;
+    font-size: 3em;
+    z-index: 5;
+    transition: transform 0.1s ease;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.frog.jumping {
+    transform: translateY(-20px) rotate(-10deg);
+}
+
+.frog.falling {
+    transform: translateY(20px) rotate(10deg);
+}
+
+/* Obstáculos */
+.obstacles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.obstacle {
+    position: absolute;
+    width: 40px;
+    background: linear-gradient(to bottom, #228B22, #32CD32);
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border: 3px solid #006400;
+}
+
+.obstacle::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 20px;
+    background: linear-gradient(45deg, #228B22, #32CD32);
+    border-radius: 10px;
+    border: 2px solid #006400;
+}
+
+.obstacle::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 20px;
+    background: linear-gradient(45deg, #228B22, #32CD32);
+    border-radius: 10px;
+    border: 2px solid #006400;
+}
+
+/* Chão */
+.ground {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(to top, #8FBC8F, #90EE90);
+    border-top: 3px solid #228B22;
+}
+
+.ground::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: repeating-linear-gradient(
+        90deg,
+        #228B22 0px,
+        #228B22 20px,
+        #32CD32 20px,
+        #32CD32 40px
+    );
+}
+
+/* Animações */
+@keyframes moveObstacle {
+    from {
+        right: -50px;
+    }
+    to {
+        right: 100%;
+    }
+}
+
+.obstacle {
+    animation: moveObstacle 3s linear infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.frog.idle {
+    animation: bounce 1s ease-in-out infinite;
+}
+
+/* Controles */
+.controls-info {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #2F4F4F;
+    font-size: 0.9em;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+    .game-container {
+        max-width: 350px;
+        height: 550px;
+    }
+    
+    .frog {
+        font-size: 2.5em;
+        left: 60px;
+    }
+    
+    .obstacle {
+        width: 35px;
+    }
+}
+
+/* Efeitos visuais */
+.game-screen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Estados ocultos */
+.hidden {
+    display: none !important;
+}
+
+/* Animação da contagem regressiva */
+@keyframes countdownPulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
