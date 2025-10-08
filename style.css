@@ -244,6 +244,7 @@ body {
     padding: 20px;
     border-top: 4px solid #654321;
     box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.6);
+    max-height: 200px;
 }
 
 .mobile-controls {
@@ -360,6 +361,10 @@ body {
 
 /* Mostrar controles mobile apenas no mobile */
 @media (max-width: 767px) {
+    body {
+        padding-bottom: 140px; /* Mais espaço para controles mobile */
+    }
+    
     .mobile-controls-container.show {
         display: block;
     }
