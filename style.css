@@ -297,19 +297,19 @@ body {
 
 .dpad {
     position: relative;
-    width: 140px;
-    height: 140px;
+    width: 180px;
+    height: 180px;
 }
 
 .dpad-btn {
     position: absolute;
-    width: 50px;
-    height: 50px;
+    width: 65px;
+    height: 65px;
     border: none;
     border-radius: 50%;
     background: linear-gradient(145deg, #34495E, #2C3E50);
     color: #ECF0F1;
-    font-size: 1.8em;
+    font-size: 2.5em;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -365,8 +365,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     background: linear-gradient(145deg, #2C3E50, #1A252F);
     border-radius: 50%;
     border: 2px solid #34495E;
@@ -461,19 +461,19 @@ body {
     }
     
     .dpad {
-        width: 120px;
-        height: 120px;
+        width: 150px;
+        height: 150px;
     }
     
     .dpad-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 1.5em;
+        width: 55px;
+        height: 55px;
+        font-size: 2.2em;
     }
     
     .dpad-center {
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
     }
 }
 
