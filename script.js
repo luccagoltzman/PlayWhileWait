@@ -11,7 +11,6 @@ class SnakeGame {
         
         this.startBtn = document.getElementById('startBtn');
         this.restartBtn = document.getElementById('restartBtn');
-        this.mobileControlsContainer = document.getElementById('mobileControlsContainer');
         
         // Configurações do jogo
         this.gridSize = 20;
@@ -46,7 +45,6 @@ class SnakeGame {
         this.setupEventListeners();
         this.showStartScreen();
         this.updateHighScore();
-        this.hideMobileControls();
     }
     
     updateHighScore() {
@@ -112,18 +110,25 @@ class SnakeGame {
             }
         });
         
-        // Controles Mobile
-        this.mobileControlsContainer.addEventListener('click', (e) => {
+        // Controles do Game Boy (D-Pad e botões A/B)
+        document.addEventListener('click', (e) => {
             if (this.gameState === 'playing') {
-                const button = e.target.closest('.control-btn');
-                if (button) {
-                    const direction = button.dataset.direction;
-                    const action = button.dataset.action;
-                    
-                    if (direction) {
-                        this.handleMobileInput(direction);
-                    } else if (action === 'pause') {
+                // D-Pad
+                const dpadBtn = e.target.closest('.dpad-btn');
+                if (dpadBtn) {
+                    const direction = dpadBtn.dataset.direction;
+                    this.handleMobileInput(direction);
+                    return;
+                }
+                
+                // Botões de ação
+                const actionBtn = e.target.closest('.action-btn');
+                if (actionBtn) {
+                    const action = actionBtn.dataset.action;
+                    if (action === 'pause') {
                         this.togglePause();
+                    } else if (action === 'start') {
+                        this.startGame();
                     }
                 }
             }
@@ -147,7 +152,6 @@ class SnakeGame {
         this.updateScore();
         this.startScreen.classList.add('hidden');
         this.gameOverOverlay.classList.remove('show');
-        this.showMobileControls();
         
         // Não iniciar o loop automaticamente - aguardar primeira tecla
         this.draw();
@@ -155,17 +159,6 @@ class SnakeGame {
     
     restartGame() {
         this.startGame();
-    }
-    
-    showMobileControls() {
-        // Só mostrar no mobile
-        if (window.innerWidth <= 767) {
-            this.mobileControlsContainer.classList.add('show');
-        }
-    }
-    
-    hideMobileControls() {
-        this.mobileControlsContainer.classList.remove('show');
     }
     
     handleInput(e) {
@@ -386,7 +379,6 @@ class SnakeGame {
         this.gameState = 'gameOver';
         this.playGameOverSound();
         this.checkRecords();
-        this.hideMobileControls();
         
         this.finalScoreElement.textContent = this.score;
         this.gameOverOverlay.classList.add('show');

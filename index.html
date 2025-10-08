@@ -7,56 +7,82 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="game-container">
-        <div class="game-header">
-            <h1>🐍 Snake Game</h1>
-            <div class="score-info">
-                <div class="score">Pontuação: <span id="score">0</span></div>
-                <div class="high-score">Recorde: <span id="highScore">0</span></div>
-            </div>
-        </div>
-        
-        <div class="game-area" id="gameArea">
-            <div class="start-screen" id="startScreen">
-                <div class="start-content">
-                    <h2>🐍 Snake Game</h2>
-                    <p>Use as setas para controlar a cobra!</p>
-                    <p>Colete a comida para crescer e marcar pontos!</p>
-                    <p>Não bata nas paredes ou em si mesma!</p>
-                    <button class="start-btn" id="startBtn">Começar Jogo</button>
+    <div class="gameboy-container">
+        <!-- Game Boy Body -->
+        <div class="gameboy-body">
+            <!-- Tela do Game Boy -->
+            <div class="gameboy-screen">
+                <div class="screen-border">
+                    <div class="screen-glass">
+                        <div class="screen-content">
+                            <div class="screen-header">
+                                <div class="nintendo-logo">NINTENDO</div>
+                                <div class="game-title">GAME BOY</div>
+                            </div>
+                            
+                            <div class="game-area" id="gameArea">
+                                <div class="start-screen" id="startScreen">
+                                    <div class="start-content">
+                                        <h2>🐍 SNAKE</h2>
+                                        <p>Use as setas para controlar!</p>
+                                        <p>Colete a comida para crescer!</p>
+                                        <p>Não bata nas paredes!</p>
+                                        <button class="start-btn" id="startBtn">START</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="game-screen" id="gameScreen">
+                                    <canvas id="gameCanvas" width="500" height="500"></canvas>
+                                    
+                                    <div class="game-over-overlay" id="gameOverOverlay">
+                                        <div class="game-over-content">
+                                            <h2>GAME OVER</h2>
+                                            <p>SCORE: <span id="finalScore">0</span></p>
+                                            <button class="restart-btn" id="restartBtn">PLAY AGAIN</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="screen-footer">
+                                <div class="score-display">
+                                    <div class="score">SCORE: <span id="score">0</span></div>
+                                    <div class="high-score">HI: <span id="highScore">0</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
-            <div class="game-screen" id="gameScreen">
-                <canvas id="gameCanvas" width="400" height="400"></canvas>
+            <!-- Controles do Game Boy -->
+            <div class="gameboy-controls">
+                <!-- D-Pad -->
+                <div class="dpad-container">
+                    <div class="dpad">
+                        <button class="dpad-btn up" data-direction="up">↑</button>
+                        <button class="dpad-btn down" data-direction="down">↓</button>
+                        <button class="dpad-btn left" data-direction="left">←</button>
+                        <button class="dpad-btn right" data-direction="right">→</button>
+                        <div class="dpad-center"></div>
+                    </div>
+                </div>
                 
-                <div class="game-over-overlay" id="gameOverOverlay">
-                    <div class="game-over-content">
-                        <h2>Game Over!</h2>
-                        <p>Pontuação Final: <span id="finalScore">0</span></p>
-                        <button class="restart-btn" id="restartBtn">Jogar Novamente</button>
-                    </div>
+                <!-- Botões A e B -->
+                <div class="action-buttons">
+                    <button class="action-btn b-btn" data-action="pause">B</button>
+                    <button class="action-btn a-btn" data-action="start">A</button>
                 </div>
             </div>
-        </div>
-        
-        <!-- Container separado para controles mobile -->
-        <div class="mobile-controls-container" id="mobileControlsContainer">
-            <div class="mobile-controls" id="mobileControls">
-                <div class="control-pad">
-                    <button class="control-btn up-btn" data-direction="up">↑</button>
-                    <div class="control-row">
-                        <button class="control-btn left-btn" data-direction="left">←</button>
-                        <button class="control-btn pause-btn" data-action="pause">⏸</button>
-                        <button class="control-btn right-btn" data-direction="right">→</button>
-                    </div>
-                    <button class="control-btn down-btn" data-direction="down">↓</button>
-                </div>
+            
+            <!-- Alto-falantes -->
+            <div class="speakers">
+                <div class="speaker left"></div>
+                <div class="speaker right"></div>
             </div>
-        </div>
-        
-        <div class="controls-info">
-            <p>🎮 Controles: SETAS para mover | ESPAÇO para pausar</p>
+            
+            <!-- LED de Power -->
+            <div class="power-led"></div>
         </div>
     </div>
     
