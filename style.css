@@ -286,7 +286,7 @@ body {
 /* Controles do Game Boy */
 .gameboy-controls {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin-bottom: 20px;
 }
@@ -298,24 +298,24 @@ body {
 
 .dpad {
     position: relative;
-    width: 80px;
-    height: 80px;
+    width: 140px;
+    height: 140px;
 }
 
 .dpad-btn {
     position: absolute;
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
     border: none;
     border-radius: 50%;
     background: linear-gradient(145deg, #34495E, #2C3E50);
     color: #ECF0F1;
-    font-size: 1.2em;
+    font-size: 1.8em;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.2s ease;
     box-shadow: 
-        0 3px 6px rgba(0, 0, 0, 0.4),
+        0 4px 8px rgba(0, 0, 0, 0.4),
         inset 0 1px 2px rgba(255, 255, 255, 0.1);
     border: 2px solid #1A252F;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
@@ -366,65 +366,12 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
     background: linear-gradient(145deg, #2C3E50, #1A252F);
     border-radius: 50%;
     border: 2px solid #34495E;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-/* Botões de ação */
-.action-buttons {
-    display: flex;
-    gap: 15px;
-}
-
-.action-btn {
-    width: 50px;
-    height: 50px;
-    border: none;
-    border-radius: 50%;
-    background: linear-gradient(145deg, #E74C3C, #C0392B);
-    color: #ECF0F1;
-    font-size: 1.1em;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 
-        0 4px 8px rgba(0, 0, 0, 0.4),
-        inset 0 1px 2px rgba(255, 255, 255, 0.2);
-    border: 2px solid #A93226;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-}
-
-.action-btn:active {
-    transform: scale(0.95);
-    background: linear-gradient(145deg, #C0392B, #A93226);
-    box-shadow: 
-        0 2px 4px rgba(0, 0, 0, 0.4),
-        inset 0 1px 2px rgba(255, 255, 255, 0.2);
-}
-
-.action-btn:hover {
-    background: linear-gradient(145deg, #C0392B, #E74C3C);
-    transform: scale(1.05);
-    box-shadow: 
-        0 6px 12px rgba(0, 0, 0, 0.4),
-        inset 0 1px 2px rgba(255, 255, 255, 0.2);
-}
-
-.b-btn {
-    background: linear-gradient(145deg, #F39C12, #E67E22);
-    border-color: #D68910;
-}
-
-.b-btn:active {
-    background: linear-gradient(145deg, #E67E22, #D68910);
-}
-
-.b-btn:hover {
-    background: linear-gradient(145deg, #E67E22, #F39C12);
 }
 
 /* Alto-falantes */
@@ -515,20 +462,19 @@ body {
     }
     
     .dpad {
-        width: 70px;
-        height: 70px;
+        width: 120px;
+        height: 120px;
     }
     
     .dpad-btn {
-        width: 25px;
-        height: 25px;
-        font-size: 1em;
+        width: 40px;
+        height: 40px;
+        font-size: 1.5em;
     }
     
-    .action-btn {
-        width: 45px;
-        height: 45px;
-        font-size: 1em;
+    .dpad-center {
+        width: 30px;
+        height: 30px;
     }
 }
 

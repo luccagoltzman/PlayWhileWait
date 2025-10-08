@@ -110,7 +110,7 @@ class SnakeGame {
             }
         });
         
-        // Controles do Game Boy (D-Pad e botões A/B)
+        // Controles do Game Boy (D-Pad)
         document.addEventListener('click', (e) => {
             if (this.gameState === 'playing') {
                 // D-Pad
@@ -119,17 +119,6 @@ class SnakeGame {
                     const direction = dpadBtn.dataset.direction;
                     this.handleMobileInput(direction);
                     return;
-                }
-                
-                // Botões de ação
-                const actionBtn = e.target.closest('.action-btn');
-                if (actionBtn) {
-                    const action = actionBtn.dataset.action;
-                    if (action === 'pause') {
-                        this.togglePause();
-                    } else if (action === 'start') {
-                        this.startGame();
-                    }
                 }
             }
         });
