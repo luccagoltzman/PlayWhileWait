@@ -53,7 +53,6 @@ body {
 .screen-border {
     background: #0F1419;
     border-radius: 15px;
-    /* padding: 15px; */
     border: 2px solid #34495E;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.8);
 }
